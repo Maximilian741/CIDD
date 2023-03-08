@@ -1,6 +1,3 @@
-DROP TABLE STUDENT;
-DROP TABLE COURSE;
-DROP TABLE SECTION;
 DROP TABLE GRADE_REPORT;
 DROP TABLE PREREQUISITE;
 
@@ -27,12 +24,11 @@ CREATE TABLE SECTION
 
 
 CREATE TABLE PREREQUISITE
-    (CourseNumber VARCHAR(50),
-    PrerequisiteNumber VARCHAR(50),
-    PRIMARY KEY (CourseNumber, PrerequisiteNumber),
-    FOREIGN KEY (CourseNumber) REFERENCES COURSE(CourseNumber),
-    FOREIGN KEY(PrerequisiteNumber) REFERENCES COURSE(CourseNumber));
-
+    (CourseNumber INT,
+    FOREIGN KEY(CourseNumber) REFERENCES COURSE(CourseNumber),
+    PrerequisiteNumber INT,
+    FOREIGN KEY(PrerequisiteNumber) REFERENCES COURSE(CourseNumber),
+    PRIMARY KEY (CourseNumber, PrerequisiteNumber));
 
 CREATE TABLE GRADE_REPORT
     (Grade VARCHAR(50),
@@ -43,6 +39,9 @@ CREATE TABLE GRADE_REPORT
     FOREIGN KEY(SectionIdentifier) REFERENCES SECTION(SectionIdentifier)   
                     ON DELETE CASCADE,
     PRIMARY KEY (StudentNumber, SectionIdentifier));
+
+
+
 
     
 
